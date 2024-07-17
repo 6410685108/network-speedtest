@@ -5,5 +5,5 @@ def start():
     if not settings.DEBUG:
         from .views import test_internet_speed
         scheduler = BackgroundScheduler()
-        scheduler.add_job(test_internet_speed, 'interval', minutes=5)
+        scheduler.add_job(test_internet_speed, 'interval', minutes=3)
         scheduler.start()

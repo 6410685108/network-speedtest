@@ -31,6 +31,10 @@
   <div class="chart-container">
     <canvas id="speedTestChart"></canvas>
   </div>
+  <select id="beginAtZeroDropdown">
+    <option value="false">No</option>
+    <option value="true">Yes</option>
+  </select>
 
   <script>
     Chart.register(ChartDataLabels);
@@ -203,9 +207,19 @@
             },
             min: initialMin,
             max: initialMax,
-          }
+          },
         }
       },
+    });
+    setInterval(function() {
+    	window.location.reload();
+    }, 360000);
+
+    document.getElementById('beginAtZeroDropdown').addEventListener('change', function() {
+      const beginAtZeroValue = this.value === 'true';
+      chart.options.scales.y.beginAtZero = beginAtZeroValue;
+      chart.options.scales.y.max = beginAtZeroValue ? 3000 : undefined;
+      chart.update();
     });
   </script>
 </body>
